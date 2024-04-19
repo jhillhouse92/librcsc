@@ -1,11 +1,17 @@
-cmake_minimum_required (VERSION 2.8.12)
+cmake_minimum_required (VERSION 3.5)
 project(librcsc)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_definitions(-DHAVE_CONFIG_H -DUSE_VECTOR)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
 
+set(CMAKE_C_COMPILER "/usr/local/opt/llvm/bin/clang")
+set(CMAKE_CXX_COMPILER "/usr/local/opt/llvm/bin/clang++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-return-type -Wno-unused-result -std=c++11 -fPIC")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-deprecated-declarations -Wno-deprecated-non-prototype -Wno-return-type -Wno-unused-result -fPIC")
+
+set(BOOST_ROOT "/usr/local/Cellar/boost/1.83.0")
+set(BOOST_INCLUDEDIR "${BOOST_ROOT}/include")
+set(BOOST_LIBRARYDIR "${BOOST_ROOT}/lib")
 find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 
